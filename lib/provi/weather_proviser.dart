@@ -18,8 +18,7 @@ class WeatherStateNotifier extends StateNotifier<AsyncValue<WeatherData>> {
   
   Future<void> fetchWeather(String cityName) async {
     state = const AsyncLoading();
-    try {
-      final weatherData =
+    try {final weatherData =
           await repository.fetchWeatherData(cityName, http.Client());
       state = AsyncData(weatherData);
     } catch (error, st) {

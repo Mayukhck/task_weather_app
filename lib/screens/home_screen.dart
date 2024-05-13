@@ -28,10 +28,10 @@ class MyHomePage extends ConsumerWidget {
                 },
                 child: const Text('Fetch Weather'),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 'City: $defaultCityName',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 15),
               Consumer(
@@ -44,7 +44,8 @@ class MyHomePage extends ConsumerWidget {
                         const SizedBox(height: 10),
                         Text(
                           'Temperature: ${weatherData.temperature}',
-                          style: const TextStyle(fontSize: 20),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
