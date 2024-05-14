@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:task_weather_app/screens/home_screen.dart';
+import 'package:task_weather_app/features/weather/presentation/home_view.dart';
 
 void main() {
   group('Button flow', () {
@@ -12,7 +12,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: ProviderScope(
-            child: MyHomePage(),
+            child: HomeView(),
           ),
         ),
       );

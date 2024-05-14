@@ -3,10 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:task_weather_app/data/weather_data.dart';
-import 'package:task_weather_app/repository/weather_repo.dart';
+import 'package:task_weather_app/features/weather/domain/weather_data.dart';
+import 'package:task_weather_app/features/weather/repository/weather_repository.dart';
 
-import 'fetch_weather_test.mocks.dart';
+import 'weather_repository_test.mocks.dart';
+
 
 @GenerateMocks([http.Client])
 void main() {
@@ -25,7 +26,7 @@ void main() {
     when(mockClient.get(any))
         .thenAnswer((_) async => http.Response(jsonEncode(jsonResponse), 200));
 
-    final WeatherData weatherData =
+    final WeatherModel weatherData =
         await weatherRepository.fetchWeatherData("Berlin", mockClient);
 
     expect(weatherData.temperature, 20.1);

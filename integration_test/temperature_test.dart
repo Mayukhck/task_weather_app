@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:task_weather_app/data/weather_data.dart';
-import 'package:task_weather_app/provi/weather_proviser.dart';
-import 'package:task_weather_app/repository/weather_repo.dart';
-import 'package:task_weather_app/screens/home_screen.dart';
+import 'package:task_weather_app/features/weather/domain/weather_data.dart';
+import 'package:task_weather_app/features/weather/provider/weather_provider.dart';
+import 'package:task_weather_app/features/weather/repository/weather_repository.dart';
+import 'package:task_weather_app/features/weather/presentation/home_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'home_page_temperathure_test.mocks.dart';
+import '../test/features/weather/presentation/home_view_test.mocks.dart';
 
 @GenerateMocks([WeatherRepository])
 void main() {
@@ -20,7 +20,7 @@ void main() {
 
     testWidgets('fetches and displays temperature',
       (WidgetTester tester) async {
-        final mockWeatherData = WeatherData(temperature: 25.0);
+        final mockWeatherData = WeatherModel(temperature: 25.0);
         when(mockWeatherRepository.fetchWeatherData(any, any))
           .thenAnswer((_) => Future.value(mockWeatherData));
 
@@ -31,7 +31,7 @@ void main() {
                 (ref) => mockWeatherRepository as WeatherRepository,
               ),
             ],
-            child: const MyHomePage(),
+            child: const HomeView(),
           ),
         );
 
