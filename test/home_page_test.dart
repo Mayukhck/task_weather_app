@@ -5,6 +5,7 @@ import 'package:task_weather_app/screens/home_screen.dart';
 
 
 void main() {
+
   testWidgets('Finding title present in screen or not',
       (WidgetTester tester) async {
     await tester.pumpWidget(
@@ -50,7 +51,7 @@ void main() {
     expect(city, findsOneWidget);
   });
 
-  testWidgets('Pressing button should display temperature',
+  testWidgets('Pressing button should not get error',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(

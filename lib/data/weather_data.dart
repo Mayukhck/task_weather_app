@@ -1,13 +1,13 @@
 
 class WeatherData {
-  final String time;
+  final String? time;
   final double temperature;
-  final double windSpeed;
+  final double? windSpeed;
 
   WeatherData({
-    required this.time,
+    this.time,
     required this.temperature,
-    required this.windSpeed,
+    this.windSpeed,
   });
 
   factory WeatherData.fromJson(Map<String, dynamic> json) {
