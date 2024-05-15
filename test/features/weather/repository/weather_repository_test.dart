@@ -12,13 +12,12 @@ import 'weather_repository_test.mocks.dart';
 void main() {
   test('Should return weather data for successful HTTP call', () async {
     final MockClient mockClient = MockClient();
-
     final WeatherRepository weatherRepository = WeatherRepository();
 
     final jsonResponse = {
       'current': {
-        'temperature_2m': 20.1,
-        'wind_speed_10m': 11.7,
+        'temperature_2m': 15.0,
+        'wind_speed_10m': 12.2,
       }
     };
 
@@ -28,21 +27,20 @@ void main() {
     final WeatherModel weatherData =
         await weatherRepository.fetchWeatherData("Berlin", mockClient);
 
-    expect(weatherData.temperature, 20.1);
-    expect(weatherData.windSpeed, 11.7);
+    expect(weatherData.temperature, 15.0);
+    expect(weatherData.windSpeed, 12.2);
   });
 
   test('Should throw exception for failed HTTP call', () async {
     final MockClient mockClient = MockClient();
-
     final WeatherRepository weatherRepository = WeatherRepository();
 
     when(mockClient.get(any)).thenAnswer(
         (_) async => http.Response('Failed to load weather data', 404));
 
-    expect(
-        () async =>
-            await weatherRepository.fetchWeatherData("Berlin", mockClient),
-        throwsA(isInstanceOf<Exception>()));
+    await expectLater(
+      weatherRepository.fetchWeatherData("Berlin", mockClient),
+      throwsA(isInstanceOf<Exception>()),
+    );
   });
 }
