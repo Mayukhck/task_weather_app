@@ -11,15 +11,15 @@ import '../presentation/home_view_test.mocks.dart';
 @GenerateMocks([WeatherRepository])
 void main() {
   group('WeatherProvider tests', () {
-    test(' successful weather data fetch', () async {
+    test('successful weather data fetch', () async {
       final MockWeatherRepository mockWeatherRepository =
           MockWeatherRepository();
 
-      const cityName = 'Berline';
+      const cityName = 'Berlin';
 
       final expectedWeatherData = WeatherModel(temperature: 19);
 
-      when(mockWeatherRepository.fetchWeatherData('Berline', any))
+      when(mockWeatherRepository.fetchWeatherData(cityName, any))
           .thenAnswer((_) async => expectedWeatherData);
 
       final container = ProviderContainer(
@@ -28,10 +28,13 @@ void main() {
         ],
       );
 
-      final weatherData =
-          await container.read(weatherFutureProvider(cityName).future);
+      final notifier = container.read(weatherStateNotifierProvider.notifier);
 
-      expect(weatherData, expectedWeatherData);
+      await notifier.fetchWeather(cityName);
+
+      final weatherState = container.read(weatherStateNotifierProvider);
+
+      expect(weatherState, AsyncData(expectedWeatherData));
     });
 
     test('fetch weather with network error throws exception', () async {
@@ -46,9 +49,14 @@ void main() {
         ],
       );
 
-      final future = container.read(weatherFutureProvider('Berlin').future);
+      final notifier = container.read(weatherStateNotifierProvider.notifier);
 
-      expect(future, throwsException);
+      await notifier.fetchWeather('Berlin');
+
+      final weatherState = container.read(weatherStateNotifierProvider);
+
+      expect(weatherState, isA<AsyncError>());
+      expect((weatherState as AsyncError).error, isException);
     });
   });
 }
