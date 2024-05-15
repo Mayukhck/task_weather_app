@@ -13,7 +13,7 @@ import '../test/features/weather/presentation/home_view_test.mocks.dart';
 @GenerateMocks([WeatherRepository])
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  group('MyHomePage', () {
+  group('with mocking data', () {
     late MockWeatherRepository mockWeatherRepository;
 
     setUp(() {
@@ -48,7 +48,7 @@ void main() {
       expect(temperatureText, findsOneWidget);
     });
   });
-  group('Button flow', () {
+  group('without mocking data', () {
     IntegrationTestWidgetsFlutterBinding.ensureInitialized();
     testWidgets('Pressing button should not get error',
         (WidgetTester tester) async {
@@ -65,7 +65,7 @@ void main() {
       await tester.tap(fetchButtonFinder);
       await tester.pumpAndSettle(const Duration(seconds: 3));
 
-      final temperatureFinder = find.text(' ');
+      final temperatureFinder = find.text('');
       expect(temperatureFinder, findsNothing);
     });
   });
