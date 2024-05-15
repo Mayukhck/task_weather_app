@@ -13,7 +13,7 @@ class WeatherRepository {
     final Uri url = Uri.parse(
         '$baseURL?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m');
 
-    final response = await http.get(url);
+    final response = await client.get(url);
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
