@@ -3,11 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:task_weather_app/features/weather/domain/weather_data.dart';
-import 'package:task_weather_app/features/weather/repository/weather_repository.dart';
+import 'package:task_weather_app/src/features/weather/domain/weather_data.dart';
+import 'package:task_weather_app/src/features/weather/repository/weather_repository.dart';
 
 import 'weather_repository_test.mocks.dart';
-
 
 @GenerateMocks([http.Client])
 void main() {

@@ -8,9 +8,9 @@ import 'dart:async' as _i5;
 import 'package:http/http.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i4;
-import 'package:task_weather_app/features/weather/domain/weather_data.dart'
+import 'package:task_weather_app/src/features/weather/domain/weather_data.dart'
     as _i2;
-import 'package:task_weather_app/features/weather/repository/weather_repository.dart'
+import 'package:task_weather_app/src/features/weather/repository/weather_repository.dart'
     as _i3;
 
 // ignore_for_file: type=lint

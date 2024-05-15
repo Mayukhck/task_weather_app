@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_weather_app/features/weather/provider/weather_provider.dart';
+import 'package:task_weather_app/src/features/weather/provider/weather_provider.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});

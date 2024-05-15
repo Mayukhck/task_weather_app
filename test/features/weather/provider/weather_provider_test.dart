@@ -2,9 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:task_weather_app/features/weather/domain/weather_data.dart';
-import 'package:task_weather_app/features/weather/provider/weather_provider.dart';
-import 'package:task_weather_app/features/weather/repository/weather_repository.dart';
+import 'package:task_weather_app/src/features/weather/domain/weather_data.dart';
+import 'package:task_weather_app/src/features/weather/provider/weather_provider.dart';
+import 'package:task_weather_app/src/features/weather/repository/weather_repository.dart';
 
 import '../presentation/home_view_test.mocks.dart';
 
