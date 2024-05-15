@@ -85,27 +85,28 @@ void main() {
 
     testWidgets('fetches and displays temperature',
         (WidgetTester tester) async {
-      final mockWeatherData = WeatherModel(temperature: 25.0);
+      final mockWeatherData = WeatherModel(temperature: 15.0);
+
       when(mockWeatherRepository.fetchWeatherData(any, any))
-          .thenAnswer((_) => Future.value(mockWeatherData));
+          .thenAnswer((_) async => mockWeatherData);
 
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            weatherRepositoryProvider.overrideWith(
-              (ref) => mockWeatherRepository as WeatherRepository,
-            ),
+            weatherRepositoryProvider.overrideWithValue(mockWeatherRepository),
           ],
-          child: const HomeView(),
+          child: const MaterialApp(
+            home: HomeView(),
+          ),
         ),
       );
 
-      final fetchButton = find.text('Fetch Weather');
+      final fetchButtonFinder = find.byType(ElevatedButton);
 
-      await tester.tap(fetchButton);
-      await tester.pump();
+      await tester.tap(fetchButtonFinder);
+      await tester.pumpAndSettle();
 
-      final temperatureText = find.text('Temperature: 25.0');
+      final temperatureText = find.text('Temperature: 15.0');
 
       expect(temperatureText, findsOneWidget);
     });
